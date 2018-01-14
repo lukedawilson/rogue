@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,10 +25,10 @@ namespace Rogue
 
       var tiles = new Tile[GridWidth,GridHeight];
 
-      var shape = Tiles.All[Rnd.Next(0, Tiles.All.Length)];
-      tiles[GridWidth / 2, GridHeight / 2] = shape;
+      var shape = GetShape(Tiles.All);
+      tiles[0, GridHeight / 2] = shape;
 
-      for (var generation = 0; generation < 10; generation++)
+      for (var generation = 0; generation < 50; generation++)
       {
         var tilesToProcess = (Tile[,])tiles.Clone();
         for (var x = 0; x < GridWidth; x++)
@@ -49,14 +48,14 @@ namespace Rogue
       }
     }
 
-    private static Tile GetNewTile(IReadOnlyList<Tile> validTiles)
+    private static Tile GetNewTile(IReadOnlyList<Tuple<Tile, double>> validTiles)
     {
       return validTiles.Count == 0
         ? null
-        : validTiles[Rnd.Next(0, validTiles.Count)];
+        : GetShape(validTiles);
     }
 
-    private static void DrawTile(Tile[,] tiles, IReadOnlyList<Tile> validTiles, int x, int y)
+    private static void DrawTile(Tile[,] tiles, IReadOnlyList<Tuple<Tile, double>> validTiles, int x, int y)
     {
       var tile = GetNewTile(validTiles);
       if (tile == null)
@@ -69,6 +68,30 @@ namespace Rogue
 
       tile.Draw(x*Tile.Width, y*Tile.Height);
       tiles[x, y] = tile;
+    }
+
+    private static Tile GetShape(IReadOnlyList<Tuple<Tile, double>> weightedShapes)
+    {
+      var weights = weightedShapes.Select(t => t.Item2).ToArray();
+      var max = weights.Sum();
+      var value = Rnd.NextDouble() * max;
+
+      var series = new List<Tuple<Tile, double, double>>();
+      for (var i = 0; i < weightedShapes.Count; i++)
+      {
+        var shape = weightedShapes[i];
+        var lowerBound = i == 0 ? 0 : series[i - 1].Item3;
+        var upperBound = lowerBound + shape.Item2;
+        series.Add(Tuple.Create(shape.Item1, lowerBound, upperBound));
+      }
+
+      foreach (var shape in series)
+      {
+        if (value >= shape.Item2 && value <= shape.Item3)
+          return shape.Item1;
+      }
+
+      return null;
     }
   }
 }

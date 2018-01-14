@@ -1,3 +1,5 @@
+using System;
+
 namespace Rogue
 {
   public static class Tiles
@@ -8,9 +10,9 @@ namespace Rogue
       {
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 0, 0, 0, 0, 1, 1},
         {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 0, 0},
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
@@ -23,10 +25,10 @@ namespace Rogue
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
       },
@@ -38,122 +40,138 @@ namespace Rogue
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 0, 0, 0, 0, 1, 1},
         {0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 0, 0, 0, 0, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
       },
     };
 
-    private static readonly Tile HorizontalNorthT = new Tile("HorizontalNorthT")
+    private static readonly Tile HorizontalNorthTJunction = new Tile("HorizontalNorthT")
     {
       Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {0, 1, 0, 0, 1, 1, 1, 0},
         {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 0, 0, 0, 0, 0, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
       },
     };
 
-    private static readonly Tile HorizontalSouthT = new Tile("HorizontalSouthT")
+    private static readonly Tile HorizontalSouthTJunction = new Tile("HorizontalSouthT")
     {
       Layout = new[,]
       {
         {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 0, 0, 0, 0, 0, 0, 1},
         {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {0, 1, 1, 1, 0, 0, 1, 0},
+        {1, 1, 1, 1, 0, 0, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
       },
     };
 
-    private static readonly Tile VerticalWestT = new Tile("VerticalWestT")
+    private static readonly Tile VerticalWestTJunction = new Tile("VerticalWestT")
     {
       Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {0, 0, 0, 0, 0, 1, 1, 1},
-        {0, 0, 0, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 1, 1, 0, 0, 1, 1},
+        {1, 1, 0, 0, 0, 0, 1, 1},
+        {0, 0, 0, 0, 0, 0, 1, 1},
+        {0, 0, 1, 1, 0, 0, 1, 1},
+        {1, 1, 1, 1, 0, 0, 1, 1},
+        {1, 1, 1, 1, 0, 0, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
       },
     };
 
-    private static readonly Tile VerticalEastT = new Tile("VerticalEastT")
+    private static readonly Tile VerticalEastTJunction = new Tile("VerticalEastT")
     {
       Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 0, 0, 0},
-        {1, 1, 1, 0, 0, 0, 0, 0},
-        {1, 1, 1, 0, 0, 1, 1, 1},
-        {1, 1, 1, 0, 0, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1, 1, 0, 0},
+        {1, 1, 0, 0, 0, 0, 0, 0},
+        {1, 1, 0, 0, 0, 0, 1, 1},
+        {1, 1, 0, 0, 1, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
       },
     };
 
-    public static readonly Tile[] All = { // ToDo: weighting
-      HorizontalCorridor,
-      VerticalCorridor,
-      Crossroads,
-      HorizontalNorthT,
-      HorizontalSouthT,
-      VerticalWestT,
-      VerticalEastT
-    };
+    // TODO: do we need to specify weights separately for each collection?
+    // Or should they be properties of the `Tile` objects?
+    // If the former, then remove these constants and specify individually.
+    // If the latter, then remove these constants and refactor.
+    private const double WeightCorridor = 5.0;
+    private const double WeightTJunction = 1.0;
+    private const double WeightCrossroads = 0.1;
 
-    public static readonly Tile Full = new Tile("Full")
-    {
-      Layout = new[,]
-      {
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-      },
-      East = All,
-      West = All,
-      North = All,
-      South = All,
-    };
+    private const double WeightHorizontalCorridor = WeightCorridor;
+    private const double WeightVerticalCorridor = WeightCorridor;
+    private const double WeightHorizontalNorthTJunction = WeightTJunction;
+    private const double WeightHorizontalSouthTJunction = WeightTJunction;
+    private const double WeightVerticalWestTJunction = WeightTJunction;
+    private const double WeightVerticalEastTJunction = WeightTJunction;
 
-    public static readonly Tile NullTile = new Tile("NullTile")
-    {
-      East = All,
-      West = All,
-      North = All,
-      South = All,
+    public static readonly Tuple<Tile, double>[] All = {
+      Tuple.Create(HorizontalCorridor, WeightHorizontalCorridor),
+      Tuple.Create(VerticalCorridor, WeightVerticalCorridor),
+      Tuple.Create(Crossroads, WeightCrossroads),
+      Tuple.Create(HorizontalNorthTJunction, WeightHorizontalNorthTJunction),
+      Tuple.Create(HorizontalSouthTJunction, WeightHorizontalSouthTJunction),
+      Tuple.Create(VerticalWestTJunction, WeightVerticalWestTJunction),
+      Tuple.Create(VerticalEastTJunction, WeightVerticalEastTJunction)
     };
 
     static Tiles()
     {
-      var toNorthWall = new Tile[0];
-      var toSouthWall = new Tile[0];
-      var toEastOpening = new[] { HorizontalCorridor, Crossroads, HorizontalNorthT, HorizontalSouthT, VerticalWestT };
-      var toWestOpening = new[] { HorizontalCorridor, Crossroads, HorizontalNorthT, HorizontalSouthT, VerticalEastT };
-      var toNorthOpening = new[] { VerticalCorridor, Crossroads, HorizontalSouthT, VerticalWestT, VerticalEastT };
-      var toSouthOpening = new[] { VerticalCorridor, Crossroads, HorizontalNorthT, VerticalWestT, VerticalEastT };
-      var toEastWall = new Tile[0];
-      var toWestWall = new Tile[0];
+      var toNorthWall = new Tuple<Tile, double>[0];
+      var toSouthWall = new Tuple<Tile, double>[0];
+      var toEastOpening = new[]
+      {
+        Tuple.Create(HorizontalCorridor, WeightHorizontalCorridor),
+        Tuple.Create(Crossroads, WeightCrossroads),
+        Tuple.Create(HorizontalNorthTJunction, WeightHorizontalNorthTJunction),
+        Tuple.Create(HorizontalSouthTJunction, WeightHorizontalSouthTJunction),
+        Tuple.Create(VerticalWestTJunction, WeightVerticalWestTJunction)
+      };
+      var toWestOpening = new[]
+      {
+        Tuple.Create(HorizontalCorridor, WeightHorizontalCorridor),
+        Tuple.Create(Crossroads, WeightCrossroads),
+        Tuple.Create(HorizontalNorthTJunction, WeightHorizontalNorthTJunction),
+        Tuple.Create(HorizontalSouthTJunction, WeightHorizontalSouthTJunction),
+        Tuple.Create(VerticalEastTJunction, WeightVerticalEastTJunction)
+      };
+      var toNorthOpening = new[]
+      {
+        Tuple.Create(VerticalCorridor, WeightVerticalCorridor),
+        Tuple.Create(Crossroads, WeightCrossroads),
+        Tuple.Create(HorizontalSouthTJunction, WeightHorizontalSouthTJunction),
+        Tuple.Create(VerticalWestTJunction, WeightVerticalWestTJunction),
+        Tuple.Create(VerticalEastTJunction, WeightVerticalEastTJunction)
+      };
+      var toSouthOpening = new[]
+      {
+        Tuple.Create(VerticalCorridor, WeightVerticalCorridor),
+        Tuple.Create(Crossroads, WeightCrossroads),
+        Tuple.Create(HorizontalNorthTJunction, WeightHorizontalNorthTJunction),
+        Tuple.Create(VerticalWestTJunction, WeightVerticalWestTJunction),
+        Tuple.Create(VerticalEastTJunction, WeightVerticalEastTJunction)
+      };
+      var toEastWall = new Tuple<Tile, double>[0];
+      var toWestWall = new Tuple<Tile, double>[0];
 
       HorizontalCorridor.North = toNorthWall;
       HorizontalCorridor.South = toSouthWall;
@@ -170,25 +188,25 @@ namespace Rogue
       Crossroads.East = toEastOpening;
       Crossroads.West = toWestOpening;
 
-      HorizontalNorthT.North = toNorthOpening;
-      HorizontalNorthT.South = toSouthWall;
-      HorizontalNorthT.East = toEastOpening;
-      HorizontalNorthT.West = toWestOpening;
+      HorizontalNorthTJunction.North = toNorthOpening;
+      HorizontalNorthTJunction.South = toSouthWall;
+      HorizontalNorthTJunction.East = toEastOpening;
+      HorizontalNorthTJunction.West = toWestOpening;
 
-      HorizontalSouthT.North = toNorthWall;
-      HorizontalSouthT.South = toSouthOpening;
-      HorizontalSouthT.East = toEastOpening;
-      HorizontalSouthT.West = toWestOpening;
+      HorizontalSouthTJunction.North = toNorthWall;
+      HorizontalSouthTJunction.South = toSouthOpening;
+      HorizontalSouthTJunction.East = toEastOpening;
+      HorizontalSouthTJunction.West = toWestOpening;
 
-      VerticalWestT.North = toNorthOpening;
-      VerticalWestT.South = toSouthOpening;
-      VerticalWestT.East = toEastWall;
-      VerticalWestT.West = toWestOpening;
+      VerticalWestTJunction.North = toNorthOpening;
+      VerticalWestTJunction.South = toSouthOpening;
+      VerticalWestTJunction.East = toEastWall;
+      VerticalWestTJunction.West = toWestOpening;
 
-      VerticalEastT.North = toNorthOpening;
-      VerticalEastT.South = toSouthOpening;
-      VerticalEastT.East = toEastOpening;
-      VerticalEastT.West = toWestWall;
+      VerticalEastTJunction.North = toNorthOpening;
+      VerticalEastTJunction.South = toSouthOpening;
+      VerticalEastTJunction.East = toEastOpening;
+      VerticalEastTJunction.West = toWestWall;
     }
   }
 }

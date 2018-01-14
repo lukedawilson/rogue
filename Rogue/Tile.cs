@@ -10,20 +10,20 @@ namespace Rogue
     public Tile(string description)
     {
       Layout = new int[Width,Height];
-      West = new Tile[0];
-      East = new Tile[0];
-      North = new Tile[0];
-      South = new Tile[0];
+      West = new Tuple<Tile, double>[0];
+      East = new Tuple<Tile, double>[0];
+      North = new Tuple<Tile, double>[0];
+      South = new Tuple<Tile, double>[0];
 
       _description = description;
     }
 
     public int[,] Layout { get; set; }
 
-    public Tile[] West { get; set; }
-    public Tile[] East { get; set; }
-    public Tile[] North { get; set; }
-    public Tile[] South { get; set; }
+    public Tuple<Tile, double>[] West { get; set; }
+    public Tuple<Tile, double>[] East { get; set; }
+    public Tuple<Tile, double>[] North { get; set; }
+    public Tuple<Tile, double>[] South { get; set; }
 
     private readonly string _description;
 
