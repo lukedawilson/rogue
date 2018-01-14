@@ -2,9 +2,9 @@ namespace Rogue
 {
   public static class Tiles
   {
-    public static readonly Tile HorizontalCorridor = new Tile
+    private static readonly Tile HorizontalCorridor = new Tile("HorizontalCorridor")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
@@ -17,9 +17,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile VerticalCorridor = new Tile
+    private static readonly Tile VerticalCorridor = new Tile("VerticalCorridor")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
@@ -32,9 +32,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile Crossroads = new Tile
+    private static readonly Tile Crossroads = new Tile("Crossroads")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
@@ -47,9 +47,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile HorizontalNorthT = new Tile
+    private static readonly Tile HorizontalNorthT = new Tile("HorizontalNorthT")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
@@ -62,9 +62,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile HorizontalSouthT = new Tile
+    private static readonly Tile HorizontalSouthT = new Tile("HorizontalSouthT")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
@@ -77,9 +77,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile VerticalWestT = new Tile
+    private static readonly Tile VerticalWestT = new Tile("VerticalWestT")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
@@ -92,9 +92,9 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile VerticalEastT = new Tile
+    private static readonly Tile VerticalEastT = new Tile("VerticalEastT")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 0, 0, 1, 1, 1},
         {1, 1, 1, 0, 0, 1, 1, 1},
@@ -107,8 +107,7 @@ namespace Rogue
       },
     };
 
-    public static readonly Tile[] All = new Tile[] // ToDo: weighting
-    {
+    public static readonly Tile[] All = { // ToDo: weighting
       HorizontalCorridor,
       VerticalCorridor,
       Crossroads,
@@ -118,9 +117,9 @@ namespace Rogue
       VerticalEastT
     };
 
-    public static readonly Tile Full = new Tile
+    public static readonly Tile Full = new Tile("Full")
     {
-      Layout = new int[Tile.Width,Tile.Height]
+      Layout = new[,]
       {
         {1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 1, 1, 1, 1},
@@ -137,7 +136,7 @@ namespace Rogue
       South = All,
     };
 
-    public static readonly Tile NullTile = new Tile
+    public static readonly Tile NullTile = new Tile("NullTile")
     {
       East = All,
       West = All,
@@ -147,14 +146,14 @@ namespace Rogue
 
     static Tiles()
     {
-      var toNorthWall = new[] { HorizontalCorridor, HorizontalNorthT };
-      var toSouthWall = new[] { HorizontalCorridor, HorizontalSouthT };
+      var toNorthWall = new Tile[0];
+      var toSouthWall = new Tile[0];
       var toEastOpening = new[] { HorizontalCorridor, Crossroads, HorizontalNorthT, HorizontalSouthT, VerticalWestT };
       var toWestOpening = new[] { HorizontalCorridor, Crossroads, HorizontalNorthT, HorizontalSouthT, VerticalEastT };
       var toNorthOpening = new[] { VerticalCorridor, Crossroads, HorizontalSouthT, VerticalWestT, VerticalEastT };
       var toSouthOpening = new[] { VerticalCorridor, Crossroads, HorizontalNorthT, VerticalWestT, VerticalEastT };
-      var toEastWall = new[] { VerticalCorridor, VerticalEastT };
-      var toWestWall = new[] { VerticalCorridor, VerticalWestT };
+      var toEastWall = new Tile[0];
+      var toWestWall = new Tile[0];
 
       HorizontalCorridor.North = toNorthWall;
       HorizontalCorridor.South = toSouthWall;
