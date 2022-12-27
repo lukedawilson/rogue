@@ -4,9 +4,6 @@ namespace Rogue;
 
 public static class Program
 {
-  private const int GridWidth = 33;
-  private const int GridHeight = 8;
-
   private static readonly Random Rnd = new();
 
   public static void Main()
@@ -15,17 +12,20 @@ public static class Program
     if (Console.BufferWidth == 0 && Console.BufferHeight == 0)
       throw new InternalBufferOverflowException("Buffer not initialised - please re-run the application");
 
-    var tiles = new Tile[GridWidth,GridHeight];
+    var gridWidth = Console.BufferWidth / Tile.Width;
+    var gridHeight = Console.BufferHeight / Tile.Height;
+
+    var tiles = new Tile[gridWidth,gridHeight];
 
     var shape = GetShape(Tiles.All);
-    tiles[0, GridHeight / 2] = shape;
+    tiles[0, gridHeight / 2] = shape;
 
     for (var generation = 0; generation < 50; generation++)
     {
       var tilesToProcess = (Tile[,])tiles.Clone();
-      for (var x = 0; x < GridWidth; x++)
+      for (var x = 0; x < gridWidth; x++)
       {
-        for (var y = 0; y < GridHeight; y++)
+        for (var y = 0; y < gridHeight; y++)
         {
           var tile = tilesToProcess[x, y];
           if (tile == null)
